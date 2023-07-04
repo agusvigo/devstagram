@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noindex, nofollow">
         <title>Devstagram - @yield('titulo')</title>
+        <link rel="shortcut icon" href="{{ asset('img') . 'favicon.png' }}" type="image/png">
         @stack('styles')
         @vite('resources/css/app.css')
         @livewireStyles
