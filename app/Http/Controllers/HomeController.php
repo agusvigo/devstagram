@@ -7,19 +7,23 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    private $posts = 'no posts';
 
     public function __invoke()
     {
-        // Obtener a quienes seguimos
-        $ids = auth()->user()->followings->pluck('id')->toArray();
-        $posts = Post::WhereIn('user_id', $ids)->latest()->paginate(20);
+        // Obtener a quienes seguimos si estamos autenticados
+        if (auth()->user())
+        {
+            $ids = auth()->user()->followings->pluck('id')->toArray();
+            $this->posts = Post::WhereIn('user_id', $ids)->latest()->paginate(20);
+        }
+
+        // Obtener todos los posts
+        $postsAll = Post::latest()->paginate(20);
 
         return view('home', [
-            'posts' => $posts
+            'posts' => $this->posts,
+            'postsAll' => $postsAll,
         ]);
     }
 }
