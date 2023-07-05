@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noindex, nofollow">
         <title>Devstagram - @yield('titulo')</title>
+        <link rel="shortcut icon" href="{{ asset('img') . '/favicon.png' }}" type="image/png">
         @stack('styles')
         @vite('resources/css/app.css')
         @livewireStyles
@@ -62,10 +63,23 @@
         </header>
 
         <main class="container mx-auto mt-10">
+
             <h2 class="font-black text-center text-3xl mb-10">
                 @yield('titulo')
             </h2>
+            
+            <h3 class="font-black text-center text-3xl mb-10">
+                @yield('subtitulo')
+            </h3>
+
             @yield('contenido')
+
+            <h3 class="font-black text-center text-3xl mb-10">
+                @yield('subtitulo_2')
+            </h3>
+
+            @yield('contenido_2')
+
         </main>
 
         <footer class=" text-center p-5 text-gray-500 font-bold uppercase">
